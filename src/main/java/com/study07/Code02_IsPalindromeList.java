@@ -70,15 +70,18 @@ public class Code02_IsPalindromeList {
 		if (head == null || head.next == null) {
 			return true;
 		}
+
+		//找中点
 		Node n1 = head;
 		Node n2 = head;
 		while (n2.next != null && n2.next.next != null) { // find mid node
 			n1 = n1.next; // n1 -> mid
 			n2 = n2.next.next; // n2 -> end
 		}
+
+
 		// n1 中点
-		
-		
+		//开始逆序
 		n2 = n1.next; // n2 -> right part first node
 		n1.next = null; // mid.next -> null
 		Node n3 = null;
