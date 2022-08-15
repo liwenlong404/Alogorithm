@@ -86,8 +86,14 @@ public class Code05_Knapsack {
 		}
 		int N = w.length;
 		int[][] dp = new int[N + 1][bag + 1];
+		//dp[N][...] = 0
+		//从N行开始 ，往上填
 		for (int index = N - 1; index >= 0; index--) {
+			//从左往右，填好当前行
 			for (int rest = 0; rest <= bag; rest++) {
+
+				//dp[index][rest] = ?
+
 				int p1 = dp[index + 1][rest];
 				int p2 = 0;
 				int next = rest - w[index] < 0 ? -1 : dp[index + 1][rest - w[index]];
@@ -95,6 +101,20 @@ public class Code05_Knapsack {
 					p2 = v[index] + next;
 				}
 				dp[index][rest] = Math.max(p1, p2);
+
+
+			/*
+				将暴力递归中的，复制过来，改
+				//不要当前货
+				int p1 = process(w, v, index + 1, rest);
+				int p2 = 0;
+
+				//要当前货，剩余空间减少
+				int next = process(w, v, index + 1, rest - w[index]);
+				if (next != -1) {
+					p2 = v[index] + next;
+				}
+				return Math.max(p1, p2);*/
 			}
 		}
 		return dp[0][bag];
